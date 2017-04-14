@@ -40,23 +40,38 @@ class Node(object):
 
 
 class Input(Node):
+    """
+    A generic input into the network.
+    """
     def __init__(self):
-        # an Input node has no inbound nodes,
-        # so no need to pass anything to the Node instantiator
+        # The base class constructor has to run to set all
+        # the properties here.
+        #
+        # The most important property on an Input is value.
+        # self.value is set during `topological_sort` later.
         Node.__init__(self)
-
-    # NOTE: Input node is the only node that may
-    # receive its value as an argument to forward().
-    #
-    # All other node implementations should calculate their
-    # values from the value of previous nodes, using
-    # self.inbound_nodes
-    #
-    # Example:
-    # val0 = self.inbound_nodes[0].value
+        
     def forward(self, value=None):
         if value is not None:
             self.value = value
+
+    def backward(self):
+        """
+        Calculates the gradient based on the output values.
+        """
+        # Initialize a partial for each of the inbound_nodes.
+        self.gradients = {n: np.zeros_like(n.value) for n in self.inbound_nodes}
+        # Cycle through the outputs. The gradient will change depending
+        # on each output, so the gradients are summed over all outputs.
+        for n in self.outbound_nodes:
+            # Get the partial of the cost with respect to this node.
+            grad_cost = n.gradients[self]
+            # Set the partial of the loss with respect to this node's inputs.
+            self.gradients[self.inbound_nodes[0]] += np.dot(grad_cost, self.inbound_nodes[1].value.T)
+            # Set the partial of the loss with respect to this node's weights.
+            self.gradients[self.inbound_nodes[1]] += np.dot(self.inbound_nodes[0].value.T, grad_cost)
+            # Set the partial of the loss with respect to this node's bias.
+            self.gradients[self.inbound_nodes[2]] += np.sum(grad_cost, axis=0, keepdims=False)
 
 
 class Add(Node):
@@ -229,4 +244,4 @@ def forward_and_backward(graph):
     # see: https://docs.python.org/2.3/whatsnew/section-slices.html
     for n in graph[::-1]:
         n.backward()
-        
+
