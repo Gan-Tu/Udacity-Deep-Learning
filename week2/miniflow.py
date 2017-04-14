@@ -188,6 +188,7 @@ class MSE(Node):
         y = self.inbound_nodes[0].value.reshape(-1, 1)
         a = self.inbound_nodes[1].value.reshape(-1, 1)
         self.value = np.mean(np.square(y - a))
+        self.m = self.inbound_nodes[0].value.shape[0]
 
 
 def topological_sort(feed_dict):
