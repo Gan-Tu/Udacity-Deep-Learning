@@ -13,6 +13,10 @@ class Node(object):
         self.outbound_nodes = []
         # A calculated value
         self.value = None
+        # Keys are the inputs to this node and
+        # their values are the partials of this node with
+        # respect to that input.
+        self.gradients = {}
         # Add this node as an outbound node on its inputs.
         for n in self.inbound_nodes:
             n.outbound_nodes.append(self)
@@ -25,7 +29,14 @@ class Node(object):
         Compute the output value based on `inbound_nodes` and
         store the result in self.value.
         """
-        raise NotImplemented
+        raise NotImplementedError
+
+    def backward(self):
+        """
+        Every node that uses this class as a base class will
+        need to define its own `backward` method.
+        """
+        raise NotImplementedError
 
 
 class Input(Node):
@@ -201,3 +212,21 @@ def forward_pass_graph(graph):
     # Forward pass
     for n in graph:
         n.forward()
+
+def forward_and_backward(graph):
+    """
+    Performs a forward pass and a backward pass through a list of sorted nodes.
+
+    Arguments:
+
+        `graph`: The result of calling `topological_sort`.
+    """
+    # Forward pass
+    for n in graph:
+        n.forward()
+
+    # Backward pass
+    # see: https://docs.python.org/2.3/whatsnew/section-slices.html
+    for n in graph[::-1]:
+        n.backward()
+        
