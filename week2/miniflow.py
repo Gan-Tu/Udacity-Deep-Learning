@@ -75,15 +75,14 @@ class Linear(Node):
         """
         Set self.value to the value of the linear function output.
         """
-        self.value = 0
         input_values = self.inbound_nodes[0].value
         weight_values = self.inbound_nodes[1].value
         bias = self.inbound_nodes[2].value
         errorMsg = "the number of input values should equal to the number of weights"
         assert len(input_values) == len(weight_values), errorMsg
-        for i in range(len(input_values)):
-            self.value += input_values[i] * weight_values[i]
-        self.value += bias
+        self.value = bias
+        for x, w in zip(input_values, weight_values):
+            self.value += x * w
 
 
 def topological_sort(feed_dict):
