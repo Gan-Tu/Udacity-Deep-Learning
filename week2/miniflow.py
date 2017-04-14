@@ -190,6 +190,16 @@ class MSE(Node):
         self.value = np.mean(np.square(y - a))
         self.m = self.inbound_nodes[0].value.shape[0]
 
+    def backward(self):
+        """
+        Calculates the gradient of the cost.
+
+        This is the final node of the network so outbound nodes
+        are not a concern.
+        """
+        self.gradients[self.inbound_nodes[0]] = (2 / self.m) * self.diff
+        self.gradients[self.inbound_nodes[1]] = (-2 / self.m) * self.diff
+
 
 def topological_sort(feed_dict):
     """
