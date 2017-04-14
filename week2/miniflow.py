@@ -282,3 +282,23 @@ def forward_and_backward(graph):
     for n in graph[::-1]:
         n.backward()
 
+def sgd_update(trainables, learning_rate=1e-2):
+    """
+    Updates the value of each trainable with 
+    Stochastic Gradient Descent (SGD).
+
+    Arguments:
+
+        `trainables`: A list of `Input` nodes representing weights/biases.
+        `learning_rate`: The learning rate.
+    """
+    # Performs SGD
+    # Loop over the trainables
+    for t in trainables:
+        # Change the trainable's value by subtracting the learning rate
+        # multiplied by the partial of the cost with respect to this
+        # trainable.
+        partial = t.gradients[t]
+        t.value -= learning_rate * partial
+
+
