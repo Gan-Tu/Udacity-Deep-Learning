@@ -150,6 +150,19 @@ class Sigmoid(Node):
         """
         self.value = self._sigmoid(self.inbound_nodes[0].value)
 
+     def backward(self):
+        """
+        Calculates the gradient using the derivative of
+        the sigmoid function.
+        """
+        # Initialize the gradients to 0.
+        self.gradients = {n: np.zeros_like(n.value) for n in self.inbound_nodes}
+        # Sum the derivative with respect to the input over all the outputs.
+        for n in self.outbound_nodes:
+            grad_cost = n.gradients[self]
+            sigmoid = self.value
+            self.gradients[self.inbound_nodes[0]] += sigmoid * (1 - sigmoid) * grad_cost
+
 class MSE(Node):
     def __init__(self, y, a):
         """
