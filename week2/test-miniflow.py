@@ -88,3 +88,20 @@ output = forward_pass(g, graph)
 print("Output should be:\nExpected:\n[[  1.23394576e-04   9.82013790e-01]\n \
     [  1.23394576e-04   9.82013790e-01]]\nActual:")
 print(output)
+
+############################ TEST 5 ############################ 
+print("Test 5 .........")
+
+y, a = Input(), Input()
+cost = MSE(y, a)
+
+y_ = np.array([1, 2, 3])
+a_ = np.array([4.5, 5, 10])
+
+feed_dict = {y: y_, a: a_}
+graph = topological_sort(feed_dict)
+# forward pass
+forward_pass(graph)
+
+print("Expected output: 23.4166666667")
+print(cost.value)
