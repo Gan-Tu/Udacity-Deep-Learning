@@ -66,3 +66,25 @@ output = forward_pass(f, graph)
 
 print("Output should be:\nExpected: \n[[-9., 4.],\n[-9., 4.]]\nActual:")
 print(output)
+
+############################ TEST 4 ############################ 
+print("Test 4 .........")
+
+
+X, W, b = Input(), Input(), Input()
+
+f = Linear(X, W, b)
+g = Sigmoid(f)
+
+X_ = np.array([[-1., -2.], [-1, -2]])
+W_ = np.array([[2., -3], [2., -3]])
+b_ = np.array([-3., -5])
+
+feed_dict = {X: X_, W: W_, b: b_}
+
+graph = topological_sort(feed_dict)
+output = forward_pass(g, graph)
+
+print("Output should be:\nExpected:\n[[  1.23394576e-04   9.82013790e-01]\n \
+    [  1.23394576e-04   9.82013790e-01]]\nActual:")
+print(output)
