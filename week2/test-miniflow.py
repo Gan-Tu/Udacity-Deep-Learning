@@ -1,7 +1,6 @@
 """
-This script builds and runs a graph with miniflow.
-
-(x + y) + y
+This script builds, runs, and tests a graph with miniflow.
+@author Udacity & Gan Tu
 """
 
 from __future__ import print_function
