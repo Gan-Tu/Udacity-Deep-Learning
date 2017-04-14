@@ -125,7 +125,11 @@ class Linear(Node):
             self.gradients[self.inbound_nodes[2]] += np.sum(grad_cost, axis=0, keepdims=False)
 
 class Sigmoid(Node):
+    """
+    Represents a node that performs the sigmoid activation function.
+    """
     def __init__(self, node):
+        # The base class constructor.
         Node.__init__(self, [node])
 
     def _sigmoid(self, x):
@@ -142,11 +146,8 @@ class Sigmoid(Node):
 
     def forward(self):
         """
-        Set the value of this node to the result of the
-        sigmoid function, `_sigmoid`.
+        Perform the sigmoid function and set the value.
         """
-        # This is a dummy value to prevent numpy errors
-        # if you test without changing this method.
         self.value = self._sigmoid(self.inbound_nodes[0].value)
 
 class MSE(Node):
