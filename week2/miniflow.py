@@ -3,7 +3,7 @@ This is a simple data structure for computational graph
 @author Gan Tu
 """
 
-
+import numpy as np
 
 class Node(object):
     def __init__(self, inbound_nodes=[]):
@@ -78,11 +78,7 @@ class Linear(Node):
         input_values = self.inbound_nodes[0].value
         weight_values = self.inbound_nodes[1].value
         bias = self.inbound_nodes[2].value
-        errorMsg = "the number of input values should equal to the number of weights"
-        assert len(input_values) == len(weight_values), errorMsg
-        self.value = bias
-        for x, w in zip(input_values, weight_values):
-            self.value += x * w
+        self.value = np.dot(input_values, weight_values) + bias
 
 
 def topological_sort(feed_dict):
