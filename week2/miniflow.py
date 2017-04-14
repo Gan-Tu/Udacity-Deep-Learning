@@ -56,22 +56,14 @@ class Input(Node):
             self.value = value
 
     def backward(self):
-        """
-        Calculates the gradient based on the output values.
-        """
-        # Initialize a partial for each of the inbound_nodes.
-        self.gradients = {n: np.zeros_like(n.value) for n in self.inbound_nodes}
-        # Cycle through the outputs. The gradient will change depending
-        # on each output, so the gradients are summed over all outputs.
+        # An Input node has no inputs so the gradient (derivative)
+        # is zero.
+        # The key, `self`, is reference to this object.
+        self.gradients = {self: 0}
+        # Weights and bias may be inputs, so you need to sum
+        # the gradient from output gradients.
         for n in self.outbound_nodes:
-            # Get the partial of the cost with respect to this node.
-            grad_cost = n.gradients[self]
-            # Set the partial of the loss with respect to this node's inputs.
-            self.gradients[self.inbound_nodes[0]] += np.dot(grad_cost, self.inbound_nodes[1].value.T)
-            # Set the partial of the loss with respect to this node's weights.
-            self.gradients[self.inbound_nodes[1]] += np.dot(self.inbound_nodes[0].value.T, grad_cost)
-            # Set the partial of the loss with respect to this node's bias.
-            self.gradients[self.inbound_nodes[2]] += np.sum(grad_cost, axis=0, keepdims=False)
+            self.gradients[self] += n.gradients[self]
 
 
 class Add(Node):
@@ -150,7 +142,7 @@ class Sigmoid(Node):
         """
         self.value = self._sigmoid(self.inbound_nodes[0].value)
 
-     def backward(self):
+    def backward(self):
         """
         Calculates the gradient using the derivative of
         the sigmoid function.
@@ -187,8 +179,10 @@ class MSE(Node):
         # an elementwise subtraction as expected.
         y = self.inbound_nodes[0].value.reshape(-1, 1)
         a = self.inbound_nodes[1].value.reshape(-1, 1)
-        self.value = np.mean(np.square(y - a))
         self.m = self.inbound_nodes[0].value.shape[0]
+         # Save the computed output for backward.
+        self.diff = y - a
+        self.value = np.mean(self.diff**2)
 
     def backward(self):
         """
