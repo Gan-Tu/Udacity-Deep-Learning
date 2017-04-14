@@ -10,7 +10,7 @@ from miniflow import *
 
 
 ############################ TEST 1 ############################ 
-print("Test 1 .........")
+print("\nTest 1 .........")
 
 x, y = Input(), Input()
 
@@ -28,7 +28,7 @@ print("{} + {} = {} (according to miniflow)".format(feed_dict[x], feed_dict[y], 
 
 
 ############################ TEST 2 ############################ 
-print("Test 2 .........")
+print("\nTest 2 .........")
 
 inputs, weights, bias = Input(), Input(), Input()
 
@@ -48,7 +48,7 @@ print("should be 12.7 with this example: " + str(output))
 
 
 ############################ TEST 3 ############################ 
-print("Test 3 .........")
+print("\nTest 3 .........")
 
 
 X, W, b = Input(), Input(), Input()
@@ -68,7 +68,7 @@ print("Output should be:\nExpected: \n[[-9., 4.],\n[-9., 4.]]\nActual:")
 print(output)
 
 ############################ TEST 4 ############################ 
-print("Test 4 .........")
+print("\nTest 4 .........")
 
 
 X, W, b = Input(), Input(), Input()
@@ -90,7 +90,7 @@ print("Output should be:\nExpected:\n[[  1.23394576e-04   9.82013790e-01]\n \
 print(output)
 
 ############################ TEST 5 ############################ 
-print("Test 5 .........")
+print("\nTest 5 .........")
 
 y, a = Input(), Input()
 cost = MSE(y, a)
@@ -101,7 +101,7 @@ a_ = np.array([4.5, 5, 10])
 feed_dict = {y: y_, a: a_}
 graph = topological_sort(feed_dict)
 # forward pass
-forward_pass(graph)
+forward_pass_graph(graph)
 
 print("Expected output: 23.4166666667")
 print(cost.value)
