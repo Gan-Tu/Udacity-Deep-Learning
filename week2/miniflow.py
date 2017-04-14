@@ -75,10 +75,10 @@ class Linear(Node):
         """
         Set self.value to the value of the linear function output.
         """
-        input_values = self.inbound_nodes[0].value
-        weight_values = self.inbound_nodes[1].value
-        bias = self.inbound_nodes[2].value
-        self.value = np.dot(input_values, weight_values) + bias
+        X = self.inbound_nodes[0].value
+        W = self.inbound_nodes[1].value
+        b = self.inbound_nodes[2].value
+        self.value = np.dot(X, W) + b
 
 
 def topological_sort(feed_dict):
