@@ -1,7 +1,7 @@
 from tensorflow.examples.tutorials.mnist import input_data
-mnist = input_data.read_data_sets(".", one_hot=True, reshape=False)
-
 import tensorflow as tf
+
+mnist = input_data.read_data_sets(".", one_hot=True, reshape=False)
 
 # Parameters
 learning_rate = 0.001
