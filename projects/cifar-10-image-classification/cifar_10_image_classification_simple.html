@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head><meta charset="utf-8" />
-<title>dlnd_image_classification</title><script src="https://unpkg.com/jupyter-js-widgets@2.0.*/dist/embed.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
+<title>dlnd_image_classification</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 
 <style type="text/css">
@@ -11778,7 +11778,7 @@ div#notebook {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Image-Classification">Image Classification<a class="anchor-link" href="#Image-Classification">&#182;</a></h1><p>In this project, you'll classify images from the <a href="https://www.cs.toronto.edu/~kriz/cifar.html">CIFAR-10 dataset</a>.  The dataset consists of airplanes, dogs, cats, and other objects. You'll preprocess the images, then train a convolutional neural network on all the samples. The images need to be normalized and the labels need to be one-hot encoded.  You'll get to apply what you learned and build a convolutional, max pooling, dropout, and fully connected layers.  At the end, you'll get to see your neural network's predictions on the sample images.</p>
+<h1 id="Image-Classification">Image Classification<a class="anchor-link" href="#Image-Classification">&#182;</a></h1><h4 id="Author:-Gan-Tu">Author: Gan Tu<a class="anchor-link" href="#Author:-Gan-Tu">&#182;</a></h4><p>In this project, I'll classify images from the <a href="https://www.cs.toronto.edu/~kriz/cifar.html">CIFAR-10 dataset</a>.  The dataset consists of airplanes, dogs, cats, and other objects. I'll preprocess the images, then train a convolutional neural network on all the samples. I first normalize the images and one-hot encode the labels. Then, I build a network with convolutional, max pooling, dropout, and fully connected layers.</p>
 <h2 id="Get-the-Data">Get the Data<a class="anchor-link" href="#Get-the-Data">&#182;</a></h2><p>Run the following cell to download the <a href="https://www.cs.toronto.edu/~kriz/cifar-10-python.tar.gz">CIFAR-10 dataset for python</a>.</p>
 
 </div>
@@ -11870,8 +11870,7 @@ div#notebook {
 <li>ship</li>
 <li>truck</li>
 </ul>
-<p>Understanding a dataset is part of making predictions on the data.  Play around with the code cell below by changing the <code>batch_id</code> and <code>sample_id</code>. The <code>batch_id</code> is the id for a batch (1-5). The <code>sample_id</code> is the id for a image and label pair in the batch.</p>
-<p>Ask yourself "What are all possible labels?", "What is the range of values for the image data?", "Are the labels in order or random?".  Answers to questions like these will help you preprocess the data and end up with better predictions.</p>
+<p>Understanding a dataset is part of making predictions on the data.  Feel free to play around with the code cell below by changing the <code>batch_id</code> and <code>sample_id</code>. The <code>batch_id</code> is the id for a batch (1-5). The <code>sample_id</code> is the id for a image and label pair in the batch.</p>
 
 </div>
 </div>
@@ -12072,7 +12071,7 @@ height=250
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Implement-Preprocess-Functions">Implement Preprocess Functions<a class="anchor-link" href="#Implement-Preprocess-Functions">&#182;</a></h2><h3 id="Normalize">Normalize<a class="anchor-link" href="#Normalize">&#182;</a></h3><p>In the cell below, implement the <code>normalize</code> function to take in image data, <code>x</code>, and return it as a normalized Numpy array. The values should be in the range of 0 to 1, inclusive.  The return object should be the same shape as <code>x</code>.</p>
+<h2 id="Implement-Preprocess-Functions">Implement Preprocess Functions<a class="anchor-link" href="#Implement-Preprocess-Functions">&#182;</a></h2><h3 id="Normalize">Normalize<a class="anchor-link" href="#Normalize">&#182;</a></h3><p>In the cell below, the <code>normalize</code> function takes in image data, <code>x</code>, and return it as a normalized Numpy array. The values are in the range of 0 to 1, inclusive.  The return object is the same shape as <code>x</code>.</p>
 
 </div>
 </div>
@@ -12088,7 +12087,6 @@ height=250
 <span class="sd">    : x: List of image data.  The image shape is (32, 32, 3)</span>
 <span class="sd">    : return: Numpy array of normalize data</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="c1"># TODO: Implement Function</span>
     <span class="k">return</span> <span class="n">x</span> <span class="o">/</span> <span class="mi">255</span>
 
 
@@ -12124,8 +12122,7 @@ height=250
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="One-hot-encode">One-hot encode<a class="anchor-link" href="#One-hot-encode">&#182;</a></h3><p>Just like the previous code cell, you'll be implementing a function for preprocessing.  This time, you'll implement the <code>one_hot_encode</code> function. The input, <code>x</code>, are a list of labels.  Implement the function to return the list of labels as One-Hot encoded Numpy array.  The possible values for labels are 0 to 9. The one-hot encoding function should return the same encoding for each value between each call to <code>one_hot_encode</code>.  Make sure to save the map of encodings outside the function.</p>
-<p>Hint: Don't reinvent the wheel.</p>
+<h3 id="One-hot-encode">One-hot encode<a class="anchor-link" href="#One-hot-encode">&#182;</a></h3><p>This is preprocessing function <code>one_hot_encode</code>. The input, <code>x</code>, are a list of labels.  The function returns the list of labels as One-Hot encoded Numpy array.  The possible values for labels are 0 to 9. The one-hot encoding function returns the same encoding for each value between each call to <code>one_hot_encode</code>.</p>
 
 </div>
 </div>
@@ -12147,7 +12144,6 @@ height=250
 <span class="sd">    : x: List of sample Labels</span>
 <span class="sd">    : return: Numpy array of one-hot encoded labels</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="c1"># TODO: Implement Function</span>
     <span class="n">labels</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span>
     <span class="k">for</span> <span class="n">label</span> <span class="ow">in</span> <span class="n">x</span><span class="p">:</span>
         <span class="n">labels</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">encoding_map</span><span class="p">[</span><span class="n">label</span><span class="p">])</span>
@@ -12186,7 +12182,7 @@ height=250
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Randomize-Data">Randomize Data<a class="anchor-link" href="#Randomize-Data">&#182;</a></h3><p>As you saw from exploring the data above, the order of the samples are randomized.  It doesn't hurt to randomize it again, but you don't need to for this dataset.</p>
+<h3 id="Randomize-Data">Randomize Data<a class="anchor-link" href="#Randomize-Data">&#182;</a></h3><p>The order of the samples are randomized already, but it doesn't hurt to randomize it again if you want.</p>
 
 </div>
 </div>
@@ -12196,7 +12192,8 @@ height=250
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Preprocess-all-the-data-and-save-it">Preprocess all the data and save it<a class="anchor-link" href="#Preprocess-all-the-data-and-save-it">&#182;</a></h2><p>Running the code cell below will preprocess all the CIFAR-10 data and save it to file. The code below also uses 10% of the training data for validation.</p>
+<h2 id="Preprocess-all-the-data-and-save-it">Preprocess all the data and save it<a class="anchor-link" href="#Preprocess-all-the-data-and-save-it">&#182;</a></h2><p>The code cell below preprocesses all the CIFAR-10 data and save it to file. 
+The code below also uses 10% of the training data for validation.</p>
 
 </div>
 </div>
@@ -12223,14 +12220,14 @@ height=250
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Check-Point">Check Point<a class="anchor-link" href="#Check-Point">&#182;</a></h1><p>This is your first checkpoint.  If you ever decide to come back to this notebook or have to restart the notebook, you can start from here.  The preprocessed data has been saved to disk.</p>
+<h1 id="Check-Point">Check Point<a class="anchor-link" href="#Check-Point">&#182;</a></h1><p>This is the first checkpoint.  If you ever decide to come back to this notebook or have to restart the notebook, you can start from here.  The preprocessed data has been saved to disk.</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[76]:</div>
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
@@ -12254,32 +12251,8 @@ height=250
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Build-the-network">Build the network<a class="anchor-link" href="#Build-the-network">&#182;</a></h2><p>For the neural network, you'll build each layer into a function.  Most of the code you've seen has been outside of functions. To test your code more thoroughly, we require that you put each layer in a function.  This allows us to give you better feedback and test for simple mistakes using our unittests before you submit your project.</p>
-<blockquote><p><strong>Note:</strong> If you're finding it hard to dedicate enough time for this course each week, we've provided a small shortcut to this part of the project. In the next couple of problems, you'll have the option to use classes from the <a href="https://www.tensorflow.org/api_docs/python/tf/layers">TensorFlow Layers</a> or <a href="https://www.tensorflow.org/api_guides/python/contrib.layers">TensorFlow Layers (contrib)</a> packages to build each layer, except the layers you build in the "Convolutional and Max Pooling Layer" section.  TF Layers is similar to Keras's and TFLearn's abstraction to layers, so it's easy to pickup.</p>
-<p>However, if you would like to get the most out of this course, try to solve all the problems <em>without</em> using anything from the TF Layers packages. You <strong>can</strong> still use classes from other packages that happen to have the same name as ones you find in TF Layers! For example, instead of using the TF Layers version of the <code>conv2d</code> class, <a href="https://www.tensorflow.org/api_docs/python/tf/layers/conv2d">tf.layers.conv2d</a>, you would want to use the TF Neural Network version of <code>conv2d</code>, <a href="https://www.tensorflow.org/api_docs/python/tf/nn/conv2d">tf.nn.conv2d</a>.</p>
-</blockquote>
-<p>Let's begin!</p>
-<h3 id="Input">Input<a class="anchor-link" href="#Input">&#182;</a></h3><p>The neural network needs to read the image data, one-hot encoded labels, and dropout keep probability. Implement the following functions</p>
-<ul>
-<li>Implement <code>neural_net_image_input</code><ul>
-<li>Return a <a href="https://www.tensorflow.org/api_docs/python/tf/placeholder">TF Placeholder</a></li>
-<li>Set the shape using <code>image_shape</code> with batch size set to <code>None</code>.</li>
-<li>Name the TensorFlow placeholder "x" using the TensorFlow <code>name</code> parameter in the <a href="https://www.tensorflow.org/api_docs/python/tf/placeholder">TF Placeholder</a>.</li>
-</ul>
-</li>
-<li>Implement <code>neural_net_label_input</code><ul>
-<li>Return a <a href="https://www.tensorflow.org/api_docs/python/tf/placeholder">TF Placeholder</a></li>
-<li>Set the shape using <code>n_classes</code> with batch size set to <code>None</code>.</li>
-<li>Name the TensorFlow placeholder "y" using the TensorFlow <code>name</code> parameter in the <a href="https://www.tensorflow.org/api_docs/python/tf/placeholder">TF Placeholder</a>.</li>
-</ul>
-</li>
-<li>Implement <code>neural_net_keep_prob_input</code><ul>
-<li>Return a <a href="https://www.tensorflow.org/api_docs/python/tf/placeholder">TF Placeholder</a> for dropout keep probability.</li>
-<li>Name the TensorFlow placeholder "keep_prob" using the TensorFlow <code>name</code> parameter in the <a href="https://www.tensorflow.org/api_docs/python/tf/placeholder">TF Placeholder</a>.</li>
-</ul>
-</li>
-</ul>
-<p>These names will be used at the end of the project to load your saved model.</p>
+<h2 id="Build-the-network">Build the network<a class="anchor-link" href="#Build-the-network">&#182;</a></h2><p>For the neural network, I'll build each layer into a function.</p>
+<h3 id="Input">Input<a class="anchor-link" href="#Input">&#182;</a></h3><p>The neural network needs to read the image data, one-hot encoded labels, and dropout keep probability.</p>
 <p>Note: <code>None</code> for shapes in TensorFlow allow for a dynamic size.</p>
 
 </div>
@@ -12287,7 +12260,7 @@ height=250
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[77]:</div>
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">tensorflow</span> <span class="k">as</span> <span class="nn">tf</span>
@@ -12298,7 +12271,6 @@ height=250
 <span class="sd">    : image_shape: Shape of the images</span>
 <span class="sd">    : return: Tensor for image input.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="c1"># TODO: Implement Function</span>
     <span class="k">return</span> <span class="n">tf</span><span class="o">.</span><span class="n">placeholder</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="o">*</span><span class="n">image_shape</span><span class="p">),</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;x&quot;</span><span class="p">)</span>
 
 
@@ -12308,7 +12280,6 @@ height=250
 <span class="sd">    : n_classes: Number of classes</span>
 <span class="sd">    : return: Tensor for label input.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="c1"># TODO: Implement Function</span>
     <span class="k">return</span> <span class="n">tf</span><span class="o">.</span><span class="n">placeholder</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="n">n_classes</span><span class="p">],</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;y&quot;</span><span class="p">)</span>
 
 
@@ -12317,7 +12288,6 @@ height=250
 <span class="sd">    Return a Tensor for keep probability</span>
 <span class="sd">    : return: Tensor for keep probability.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="c1"># TODO: Implement Function</span>
     <span class="k">return</span> <span class="n">tf</span><span class="o">.</span><span class="n">placeholder</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;keep_prob&quot;</span><span class="p">)</span>
 
 
@@ -12358,28 +12328,15 @@ Keep Prob Tests Passed.
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Convolution-and-Max-Pooling-Layer">Convolution and Max Pooling Layer<a class="anchor-link" href="#Convolution-and-Max-Pooling-Layer">&#182;</a></h3><p>Convolution layers have a lot of success with images. For this code cell, you should implement the function <code>conv2d_maxpool</code> to apply convolution then max pooling:</p>
-<ul>
-<li>Create the weight and bias using <code>conv_ksize</code>, <code>conv_num_outputs</code> and the shape of <code>x_tensor</code>.</li>
-<li>Apply a convolution to <code>x_tensor</code> using weight and <code>conv_strides</code>.<ul>
-<li>We recommend you use same padding, but you're welcome to use any padding.</li>
-</ul>
-</li>
-<li>Add bias</li>
-<li>Add a nonlinear activation to the convolution.</li>
-<li>Apply Max Pooling using <code>pool_ksize</code> and <code>pool_strides</code>.<ul>
-<li>We recommend you use same padding, but you're welcome to use any padding.</li>
-</ul>
-</li>
-</ul>
-<p><strong>Note:</strong> You <strong>can't</strong> use <a href="https://www.tensorflow.org/api_docs/python/tf/layers">TensorFlow Layers</a> or <a href="https://www.tensorflow.org/api_guides/python/contrib.layers">TensorFlow Layers (contrib)</a> for <strong>this</strong> layer, but you can still use TensorFlow's <a href="https://www.tensorflow.org/api_docs/python/tf/nn">Neural Network</a> package. You may still use the shortcut option for all the <strong>other</strong> layers.</p>
+<h3 id="Convolution-and-Max-Pooling-Layer">Convolution and Max Pooling Layer<a class="anchor-link" href="#Convolution-and-Max-Pooling-Layer">&#182;</a></h3><p>The function <code>conv2d_maxpool</code> applies convolution then max pooling:</p>
+<p><strong>Note:</strong> I <strong>won't</strong> use <a href="https://www.tensorflow.org/api_docs/python/tf/layers">TensorFlow Layers</a> or <a href="https://www.tensorflow.org/api_guides/python/contrib.layers">TensorFlow Layers (contrib)</a> for <strong>this</strong> layer but TensorFlow's <a href="https://www.tensorflow.org/api_docs/python/tf/nn">Neural Network</a> package. I'll use the shortcut option for all the <strong>other</strong> layers.</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[78]:</div>
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">conv2d_maxpool</span><span class="p">(</span><span class="n">x_tensor</span><span class="p">,</span> <span class="n">conv_num_outputs</span><span class="p">,</span> <span class="n">conv_ksize</span><span class="p">,</span> <span class="n">conv_strides</span><span class="p">,</span> <span class="n">pool_ksize</span><span class="p">,</span> <span class="n">pool_strides</span><span class="p">):</span>
@@ -12393,7 +12350,6 @@ Keep Prob Tests Passed.
 <span class="sd">    :param pool_strides: Stride 2-D Tuple for pool</span>
 <span class="sd">    : return: A tensor that represents convolution and max pooling of x_tensor</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="c1"># TODO: Implement Function</span>
     <span class="n">batch_size</span><span class="p">,</span> <span class="n">input_height</span><span class="p">,</span> <span class="n">input_width</span><span class="p">,</span> <span class="n">input_depth</span> <span class="o">=</span> <span class="n">x_tensor</span><span class="o">.</span><span class="n">shape</span>
     <span class="n">W</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">truncated_normal</span><span class="p">([</span><span class="o">*</span><span class="n">conv_ksize</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">input_depth</span><span class="p">),</span> <span class="n">conv_num_outputs</span><span class="p">],</span> <span class="n">stddev</span><span class="o">=</span><span class="mi">1</span><span class="o">/</span><span class="n">tf</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">conv_num_outputs</span><span class="p">)),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">float32</span><span class="p">))</span>
     <span class="n">b</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">random_normal</span><span class="p">([</span><span class="n">conv_num_outputs</span><span class="p">]))</span>
@@ -12436,14 +12392,15 @@ Keep Prob Tests Passed.
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Flatten-Layer">Flatten Layer<a class="anchor-link" href="#Flatten-Layer">&#182;</a></h3><p>Implement the <code>flatten</code> function to change the dimension of <code>x_tensor</code> from a 4-D tensor to a 2-D tensor.  The output should be the shape (<em>Batch Size</em>, <em>Flattened Image Size</em>). Shortcut option: you can use classes from the <a href="https://www.tensorflow.org/api_docs/python/tf/layers">TensorFlow Layers</a> or <a href="https://www.tensorflow.org/api_guides/python/contrib.layers">TensorFlow Layers (contrib)</a> packages for this layer. For more of a challenge, only use other TensorFlow packages.</p>
+<h3 id="Flatten-Layer">Flatten Layer<a class="anchor-link" href="#Flatten-Layer">&#182;</a></h3><p>The <code>flatten</code> function changes the dimension of <code>x_tensor</code> from a 4-D tensor to a 2-D tensor.<br>
+The output should be the shape (<em>Batch Size</em>, <em>Flattened Image Size</em>).</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[79]:</div>
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">flatten</span><span class="p">(</span><span class="n">x_tensor</span><span class="p">):</span>
@@ -12452,7 +12409,6 @@ Keep Prob Tests Passed.
 <span class="sd">    : x_tensor: A tensor of size (Batch Size, ...), where ... are the image dimensions.</span>
 <span class="sd">    : return: A tensor of size (Batch Size, Flattened Image Size).</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="c1"># TODO: Implement Function</span>
     <span class="n">batch_size</span><span class="p">,</span> <span class="n">h</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">d</span> <span class="o">=</span> <span class="n">x_tensor</span><span class="o">.</span><span class="n">get_shape</span><span class="p">()</span><span class="o">.</span><span class="n">as_list</span><span class="p">()</span>
     <span class="k">return</span> <span class="n">tf</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">x_tensor</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">h</span> <span class="o">*</span> <span class="n">w</span> <span class="o">*</span><span class="n">d</span><span class="p">])</span>
 
@@ -12489,14 +12445,14 @@ Keep Prob Tests Passed.
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Fully-Connected-Layer">Fully-Connected Layer<a class="anchor-link" href="#Fully-Connected-Layer">&#182;</a></h3><p>Implement the <code>fully_conn</code> function to apply a fully connected layer to <code>x_tensor</code> with the shape (<em>Batch Size</em>, <em>num_outputs</em>). Shortcut option: you can use classes from the <a href="https://www.tensorflow.org/api_docs/python/tf/layers">TensorFlow Layers</a> or <a href="https://www.tensorflow.org/api_guides/python/contrib.layers">TensorFlow Layers (contrib)</a> packages for this layer. For more of a challenge, only use other TensorFlow packages.</p>
+<h3 id="Fully-Connected-Layer">Fully-Connected Layer<a class="anchor-link" href="#Fully-Connected-Layer">&#182;</a></h3><p>The <code>fully_conn</code> function applies a fully connected layer to <code>x_tensor</code> with the shape (<em>Batch Size</em>, <em>num_outputs</em>).</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[80]:</div>
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">fully_conn</span><span class="p">(</span><span class="n">x_tensor</span><span class="p">,</span> <span class="n">num_outputs</span><span class="p">):</span>
@@ -12506,8 +12462,6 @@ Keep Prob Tests Passed.
 <span class="sd">    : num_outputs: The number of output that the new tensor should be.</span>
 <span class="sd">    : return: A 2-D tensor where the second dimension is num_outputs.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="c1"># TODO: Implement Function</span>
-    
     <span class="k">return</span> <span class="n">tf</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">dense</span><span class="p">(</span><span class="n">x_tensor</span><span class="p">,</span> <span class="n">num_outputs</span><span class="p">)</span>
 
 
@@ -12543,15 +12497,14 @@ Keep Prob Tests Passed.
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Output-Layer">Output Layer<a class="anchor-link" href="#Output-Layer">&#182;</a></h3><p>Implement the <code>output</code> function to apply a fully connected layer to <code>x_tensor</code> with the shape (<em>Batch Size</em>, <em>num_outputs</em>). Shortcut option: you can use classes from the <a href="https://www.tensorflow.org/api_docs/python/tf/layers">TensorFlow Layers</a> or <a href="https://www.tensorflow.org/api_guides/python/contrib.layers">TensorFlow Layers (contrib)</a> packages for this layer. For more of a challenge, only use other TensorFlow packages.</p>
-<p><strong>Note:</strong> Activation, softmax, or cross entropy should <strong>not</strong> be applied to this.</p>
+<h3 id="Output-Layer">Output Layer<a class="anchor-link" href="#Output-Layer">&#182;</a></h3><p>The <code>output</code> function applies a fully connected layer to <code>x_tensor</code> with the shape (<em>Batch Size</em>, <em>num_outputs</em>).</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[81]:</div>
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">output</span><span class="p">(</span><span class="n">x_tensor</span><span class="p">,</span> <span class="n">num_outputs</span><span class="p">):</span>
@@ -12561,7 +12514,7 @@ Keep Prob Tests Passed.
 <span class="sd">    : num_outputs: The number of output that the new tensor should be.</span>
 <span class="sd">    : return: A 2-D tensor where the second dimension is num_outputs.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="c1"># TODO: Implement Function</span>
+    <span class="c1"># Use Linear Activation Function</span>
     <span class="k">return</span> <span class="n">tf</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">dense</span><span class="p">(</span><span class="n">x_tensor</span><span class="p">,</span> <span class="n">num_outputs</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
 
 
@@ -12597,22 +12550,15 @@ Keep Prob Tests Passed.
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Create-Convolutional-Model">Create Convolutional Model<a class="anchor-link" href="#Create-Convolutional-Model">&#182;</a></h3><p>Implement the function <code>conv_net</code> to create a convolutional neural network model. The function takes in a batch of images, <code>x</code>, and outputs logits.  Use the layers you created above to create this model:</p>
-<ul>
-<li>Apply 1, 2, or 3 Convolution and Max Pool layers</li>
-<li>Apply a Flatten Layer</li>
-<li>Apply 1, 2, or 3 Fully Connected Layers</li>
-<li>Apply an Output Layer</li>
-<li>Return the output</li>
-<li>Apply <a href="https://www.tensorflow.org/api_docs/python/tf/nn/dropout">TensorFlow's Dropout</a> to one or more layers in the model using <code>keep_prob</code>. </li>
-</ul>
+<h3 id="Create-Convolutional-Model">Create Convolutional Model<a class="anchor-link" href="#Create-Convolutional-Model">&#182;</a></h3><p>The function <code>conv_net</code> creates a convolutional neural network model.</p>
+<p>The function takes in a batch of images, <code>x</code>, and outputs logits.</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[125]:</div>
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">conv_net</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">keep_prob</span><span class="p">):</span>
@@ -12622,38 +12568,16 @@ Keep Prob Tests Passed.
 <span class="sd">    : keep_prob: Placeholder tensor that hold dropout keep probability.</span>
 <span class="sd">    : return: Tensor that represents logits</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="c1"># TODO: Apply 1, 2, or 3 Convolution and Max Pool layers</span>
-    <span class="c1">#    Play around with different number of outputs, kernel size and stride</span>
-    <span class="c1"># Function Definition from Above:</span>
-    <span class="c1">#    conv2d_maxpool(x_tensor, conv_num_outputs, conv_ksize, conv_strides, pool_ksize, pool_strides)</span>
     <span class="n">x</span> <span class="o">=</span> <span class="n">conv2d_maxpool</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
     <span class="n">x</span> <span class="o">=</span> <span class="n">conv2d_maxpool</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
     <span class="n">x</span> <span class="o">=</span> <span class="n">conv2d_maxpool</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">64</span><span class="p">,</span> <span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
     <span class="n">x</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">dropout</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">keep_prob</span><span class="p">)</span>
-    
-    <span class="c1"># TODO: Apply a Flatten Layer</span>
-    <span class="c1"># Function Definition from Above:</span>
-    <span class="c1">#   flatten(x_tensor)</span>
     <span class="n">x</span> <span class="o">=</span> <span class="n">flatten</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-    
-
-    <span class="c1"># TODO: Apply 1, 2, or 3 Fully Connected Layers</span>
-    <span class="c1">#    Play around with different number of outputs</span>
-    <span class="c1"># Function Definition from Above:</span>
-    <span class="c1">#   fully_conn(x_tensor, num_outputs)</span>
     <span class="n">x</span> <span class="o">=</span> <span class="n">fully_conn</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">256</span><span class="p">)</span>
     <span class="n">x</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">dropout</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">keep_prob</span><span class="p">)</span>
     <span class="n">x</span> <span class="o">=</span> <span class="n">fully_conn</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">64</span><span class="p">)</span>
     <span class="n">x</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">dropout</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">keep_prob</span><span class="p">)</span>
-    
-    
-    <span class="c1"># TODO: Apply an Output Layer</span>
-    <span class="c1">#    Set this to the number of classes</span>
-    <span class="c1"># Function Definition from Above:</span>
-    <span class="c1">#   output(x_tensor, num_outputs)</span>
     <span class="n">x</span> <span class="o">=</span> <span class="n">output</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
-
-    <span class="c1"># TODO: return output</span>
     <span class="k">return</span> <span class="n">x</span>
 
 
@@ -12716,12 +12640,7 @@ Keep Prob Tests Passed.
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Train-the-Neural-Network">Train the Neural Network<a class="anchor-link" href="#Train-the-Neural-Network">&#182;</a></h2><h3 id="Single-Optimization">Single Optimization<a class="anchor-link" href="#Single-Optimization">&#182;</a></h3><p>Implement the function <code>train_neural_network</code> to do a single optimization.  The optimization should use <code>optimizer</code> to optimize in <code>session</code> with a <code>feed_dict</code> of the following:</p>
-<ul>
-<li><code>x</code> for image input</li>
-<li><code>y</code> for labels</li>
-<li><code>keep_prob</code> for keep probability for dropout</li>
-</ul>
+<h2 id="Train-the-Neural-Network">Train the Neural Network<a class="anchor-link" href="#Train-the-Neural-Network">&#182;</a></h2><h3 id="Single-Optimization">Single Optimization<a class="anchor-link" href="#Single-Optimization">&#182;</a></h3><p>The function <code>train_neural_network</code> does a single optimization.</p>
 <p>This function will be called for each batch, so <code>tf.global_variables_initializer()</code> has already been called.</p>
 <p>Note: Nothing needs to be returned. This function is only optimizing the neural network.</p>
 
@@ -12730,7 +12649,7 @@ Keep Prob Tests Passed.
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[126]:</div>
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">train_neural_network</span><span class="p">(</span><span class="n">session</span><span class="p">,</span> <span class="n">optimizer</span><span class="p">,</span> <span class="n">keep_probability</span><span class="p">,</span> <span class="n">feature_batch</span><span class="p">,</span> <span class="n">label_batch</span><span class="p">):</span>
@@ -12742,8 +12661,6 @@ Keep Prob Tests Passed.
 <span class="sd">    : feature_batch: Batch of Numpy image data</span>
 <span class="sd">    : label_batch: Batch of Numpy label data</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="c1"># TODO: Implement Function</span>
-    <span class="c1"># Training cycle</span>
     <span class="n">session</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">optimizer</span><span class="p">,</span> <span class="n">feed_dict</span><span class="o">=</span><span class="p">{</span><span class="n">x</span><span class="p">:</span> <span class="n">feature_batch</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="n">label_batch</span><span class="p">,</span> <span class="n">keep_prob</span><span class="p">:</span> <span class="n">keep_probability</span><span class="p">})</span>
 
 <span class="sd">&quot;&quot;&quot;</span>
@@ -12778,14 +12695,16 @@ Keep Prob Tests Passed.
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Show-Stats">Show Stats<a class="anchor-link" href="#Show-Stats">&#182;</a></h3><p>Implement the function <code>print_stats</code> to print loss and validation accuracy.  Use the global variables <code>valid_features</code> and <code>valid_labels</code> to calculate validation accuracy.  Use a keep probability of <code>1.0</code> to calculate the loss and validation accuracy.</p>
+<h3 id="Show-Stats">Show Stats<a class="anchor-link" href="#Show-Stats">&#182;</a></h3><p>The function <code>print_stats</code> prints loss and validation accuracy.</p>
+<p>I use the global variables <code>valid_features</code> and <code>valid_labels</code> to calculate validation accuracy.</p>
+<p>Use a keep probability of <code>1.0</code> to calculate the loss and validation accuracy.</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[127]:</div>
+<div class="prompt input_prompt">In&nbsp;[9]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">print_stats</span><span class="p">(</span><span class="n">session</span><span class="p">,</span> <span class="n">feature_batch</span><span class="p">,</span> <span class="n">label_batch</span><span class="p">,</span> <span class="n">cost</span><span class="p">,</span> <span class="n">accuracy</span><span class="p">):</span>
@@ -12797,7 +12716,6 @@ Keep Prob Tests Passed.
 <span class="sd">    : cost: TensorFlow cost function</span>
 <span class="sd">    : accuracy: TensorFlow accuracy function</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="c1"># TODO: Implement Function</span>
     <span class="n">loss</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">cost</span><span class="p">,</span> <span class="n">feed_dict</span><span class="o">=</span><span class="p">{</span><span class="n">x</span><span class="p">:</span> <span class="n">feature_batch</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="n">label_batch</span><span class="p">,</span> <span class="n">keep_prob</span><span class="p">:</span> <span class="mf">1.</span><span class="p">})</span>
     <span class="n">accuracy</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">accuracy</span><span class="p">,</span> <span class="n">feed_dict</span><span class="o">=</span><span class="p">{</span><span class="n">x</span><span class="p">:</span> <span class="n">valid_features</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="n">valid_labels</span><span class="p">,</span> <span class="n">keep_prob</span><span class="p">:</span> <span class="mf">1.</span><span class="p">})</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Loss: </span><span class="si">{0:.5f}</span><span class="s2">; Validation Accuracy: </span><span class="si">{1:.5f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">loss</span><span class="p">,</span> <span class="n">accuracy</span><span class="p">))</span>
@@ -12815,15 +12733,9 @@ Keep Prob Tests Passed.
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Hyperparameters">Hyperparameters<a class="anchor-link" href="#Hyperparameters">&#182;</a></h3><p>Tune the following parameters:</p>
 <ul>
-<li>Set <code>epochs</code> to the number of iterations until the network stops learning or start overfitting</li>
-<li>Set <code>batch_size</code> to the highest number that your machine has memory for.  Most people set them to common sizes of memory:<ul>
-<li>64</li>
-<li>128</li>
-<li>256</li>
-<li>...</li>
-</ul>
-</li>
-<li>Set <code>keep_probability</code> to the probability of keeping a node using dropout</li>
+<li><code>epochs</code>: the number of iterations until the network stops learning or start overfitting</li>
+<li><code>batch_size</code>: the highest number that your machine has memory for.  </li>
+<li><code>keep_probability</code>: the probability of keeping a node using dropout</li>
 </ul>
 
 </div>
@@ -12834,8 +12746,7 @@ Keep Prob Tests Passed.
 <div class="prompt input_prompt">In&nbsp;[128]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># TODO: Tune Parameters</span>
-<span class="n">epochs</span> <span class="o">=</span> <span class="mi">30</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">epochs</span> <span class="o">=</span> <span class="mi">30</span>
 <span class="n">batch_size</span> <span class="o">=</span> <span class="mi">128</span>
 <span class="n">keep_probability</span> <span class="o">=</span> <span class="mf">0.5</span>
 </pre></div>
@@ -12850,7 +12761,7 @@ Keep Prob Tests Passed.
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Train-on-a-Single-CIFAR-10-Batch">Train on a Single CIFAR-10 Batch<a class="anchor-link" href="#Train-on-a-Single-CIFAR-10-Batch">&#182;</a></h3><p>Instead of training the neural network on all the CIFAR-10 batches of data, let's use a single batch. This should save time while you iterate on the model to get a better accuracy.  Once the final validation accuracy is 50% or greater, run the model on all the data in the next section.</p>
+<h3 id="Train-on-a-Single-CIFAR-10-Batch">Train on a Single CIFAR-10 Batch<a class="anchor-link" href="#Train-on-a-Single-CIFAR-10-Batch">&#182;</a></h3><p>Instead of training the neural network on all the CIFAR-10 batches of data, let's use a single batch. This should save time while we iterate on the model to get a better accuracy.  Once the final validation accuracy is 50% or greater, run the model on all the data in the next section.</p>
 
 </div>
 </div>
@@ -12933,7 +12844,7 @@ Epoch 30, CIFAR-10 Batch 1:  Loss: 1.21978; Validation Accuracy: 0.45800
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Fully-Train-the-Model">Fully Train the Model<a class="anchor-link" href="#Fully-Train-the-Model">&#182;</a></h3><p>Now that you got a good accuracy with a single CIFAR-10 batch, try it with all five batches.</p>
+<h3 id="Fully-Train-the-Model">Fully Train the Model<a class="anchor-link" href="#Fully-Train-the-Model">&#182;</a></h3><p>Now that we got a fair accuracy with a single CIFAR-10 batch, try it with all five batches.</p>
 
 </div>
 </div>
@@ -13145,7 +13056,7 @@ Epoch 30, CIFAR-10 Batch 5:  Loss: 0.44613; Validation Accuracy: 0.63680
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Checkpoint">Checkpoint<a class="anchor-link" href="#Checkpoint">&#182;</a></h1><p>The model has been saved to disk.</p>
-<h2 id="Test-Model">Test Model<a class="anchor-link" href="#Test-Model">&#182;</a></h2><p>Test your model against the test dataset.  This will be your final accuracy. You should have an accuracy greater than 50%. If you don't, keep tweaking the model architecture and parameters.</p>
+<h2 id="Test-Model">Test Model<a class="anchor-link" href="#Test-Model">&#182;</a></h2><p>Test the model against the test dataset.  This will be our final accuracy.</p>
 
 </div>
 </div>
@@ -14036,11 +13947,23 @@ height=319
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Why-50-80%-Accuracy?">Why 50-80% Accuracy?<a class="anchor-link" href="#Why-50-80%-Accuracy?">&#182;</a></h2><p>You might be wondering why you can't get an accuracy any higher. First things first, 50% isn't bad for a simple CNN.  Pure guessing would get you 10% accuracy. However, you might notice people are getting scores <a href="http://rodrigob.github.io/are_we_there_yet/build/classification_datasets_results.html#43494641522d3130">well above 80%</a>.  That's because we haven't taught you all there is to know about neural networks. We still need to cover a few more techniques.</p>
-<h2 id="Submitting-This-Project">Submitting This Project<a class="anchor-link" href="#Submitting-This-Project">&#182;</a></h2><p>When submitting this project, make sure to run all the cells before saving the notebook.  Save the notebook file as "dlnd_image_classification.ipynb" and save it as a HTML file under "File" -&gt; "Download as".  Include the "helper.py" and "problem_unittests.py" files in your submission.</p>
+<h2 id="Why-50-80%-Accuracy?">Why 50-80% Accuracy?<a class="anchor-link" href="#Why-50-80%-Accuracy?">&#182;</a></h2><p>You might be wondering why I can't get an accuracy any higher. First things first, 50% isn't bad for a simple CNN.  Pure guessing would get us 10% accuracy. However, you might notice people are getting scores <a href="http://rodrigob.github.io/are_we_there_yet/build/classification_datasets_results.html#43494641522d3130">well above 80%</a>.  That's because I haven't learned all there is about neural networks. I will update the net after I learned more techniques</p>
 
 </div>
 </div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+
+</div>
+</div>
+</div>
+
 </div>
     </div>
   </div>
