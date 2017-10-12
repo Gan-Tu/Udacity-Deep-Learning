@@ -1,3 +1,7 @@
+[![Udacity Deep Learning Nanodegree](http://tugan0329.bitbucket.io/imgs/github/dlnd.svg)](https://www.udacity.com/course/deep-learning-nanodegree-foundation--nd101)
+
+![header img](readme.png)
+
 # Project Overview
 In this project, I'll classify images from the CIFAR-10 dataset. 
 The dataset consists of airplanes, dogs, cats, and other objects. 

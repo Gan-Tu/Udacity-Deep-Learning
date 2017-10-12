@@ -1,3 +1,7 @@
+[![Udacity Deep Learning Nanodegree](http://tugan0329.bitbucket.io/imgs/github/dlnd.svg)](https://www.udacity.com/course/deep-learning-nanodegree-foundation--nd101)
+
+![header img](data/readme.png)
+
 # Project Overview
 In this project, I'll generate my own Simpsons TV scripts using RNNs. 
 

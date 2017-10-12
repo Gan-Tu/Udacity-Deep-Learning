@@ -1,3 +1,7 @@
+[![Udacity Deep Learning Nanodegree](http://tugan0329.bitbucket.io/imgs/github/dlnd.svg)](https://www.udacity.com/course/deep-learning-nanodegree-foundation--nd101)
+
+![header img](assets/readme.png)
+
 # Project Overview
 In this project, I'll build a neural network from scratch to carry out a prediction problem on a real dataset! 
 
