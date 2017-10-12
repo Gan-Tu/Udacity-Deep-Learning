@@ -1,4 +1,4 @@
-[![Udacity Deep Learning Nanodegree](http://tugan0329.bitbucket.io/imgs/dlnd.svg)](https://www.udacity.com/course/deep-learning-nanodegree-foundation--nd101)
+[![Udacity Deep Learning Nanodegree](http://tugan0329.bitbucket.io/imgs/github/dlnd.svg)](https://www.udacity.com/course/deep-learning-nanodegree-foundation--nd101)
 
 # Udacity-Deep-Learning
 
